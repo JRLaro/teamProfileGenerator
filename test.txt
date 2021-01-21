@@ -1,0 +1,39 @@
+// TODO: Include packages needed for this application
+const fs = require('fs');
+const path = require('path');
+const inquirer = require('inquirer');
+const generateMarkDown = require(``)
+
+
+// TODO: Create an array of questions for user input
+const questions = [
+    {
+        type: 'input',
+        name: 'github',
+        message: 'What is your GitHub username?',
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'What is your GitHub username?',
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'What is your GitHub username?',
+    },
+];
+
+function writeToFile(data) {
+    fs.writeFile('readMe.md', data, (err) => err ? console.log(err) : console.log('no errors found'));
+
+}
+
+function start() {
+    inquirer.prompt(questions)
+        .then((data) => {
+            console.log("Just a moment while we generate your ReadMe...");
+            writeToFile(generateMarkdown(data));
+        });
+}
+start()
