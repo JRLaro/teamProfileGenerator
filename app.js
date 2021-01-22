@@ -11,8 +11,11 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-// let teamMembers = []; // here we will push obj
-function init() { 
+
+const teamMembers = [];
+// here we will push obj
+
+function init() {
     function createManager() {
         console.log("Let's build your team!");
         inquirer.prompt([
@@ -41,20 +44,26 @@ function init() {
                 //validate user input here
             },
         ]).then((answers) => {
-            const manager = new Manager (answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
             console.log(manager);
-        });
+            teamMembers.push(manager); // this pushes the obj -> array (teamMembers)
+            console.log(teamMembers);
+            render(teamMembers); // this returns the created HTML
+            console.log(render(teamMembers));
+
+            function writeToFile(teamMembers) {
+                fs.writeFile('team.html', render(teamMembers), (err) => err ? console.log(err) : console.log('no errors found'));
+            
+            }
+            writeToFile(teamMembers);
+
+        }).catch((error) => console.log(error));
     }
     createManager();
 }
 
 init();
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
