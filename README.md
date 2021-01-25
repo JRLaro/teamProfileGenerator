@@ -23,18 +23,20 @@ The application will be invoked by using the following command:
 - JavaScript
 - JQuery
 - Node.js
+- NPM (Inquirer)
        
   
   
 ## *Usage* 
+![](assets/screenShot.png)
   
+## *How to Use*
+ In order for the User to use, they must open the "teamProfileGenerator" from the command line and or via VScode. Then the User must open the integrated terminal follow by npm i. (This will install "inquirer") then they will ("node app.js") -> which will execute the prompts. Once completed the User will search the output folder where they will find the team.html file that was generated. 
+
+## *Author Info*  
   
-  
-## *Roadmap*
-  
-  N/A
-  
-  
+> Email: joselarojr@gmail.com
+- GitHub User: JRLaro
   
 ## *Credits // License*
       
