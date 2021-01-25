@@ -88,7 +88,7 @@ function init() {
                 message: "Would you like to add an Employee?",
                 //create a list of choices that prompts the User to select if they'd like to add another Employee.
                 choices: [
-                    "Add a Manger",
+                    "Add another Manager",
                     "Add an Engineer",
                     "Add an Intern",
                     "Chill I don't want to add another Employee!!!"
@@ -97,7 +97,7 @@ function init() {
             },
         ]).then((answers) => { // the switch statement allows 
             switch (answers.addEmployee) {
-                case "Add a Manager":
+                case "Add another Manager":
                     createManager();
                     break;
                 case "Add an Engineer":
@@ -108,7 +108,6 @@ function init() {
                     break;
                 default:
                     writeToFile(teamMembers);
-                    //    fileWriter(outputPath, render(teamMembers));
                     break;
             }
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
@@ -190,7 +189,7 @@ function createEngineer() {
             //create a switch statement -> if yes then loop again -> if no proceed to next team-member.
             choices: [
                 "Add a Manger",
-                "Add a Engineer",
+                "Add another Engineer",
                 "Add an Intern",
                 "Chill I don't want to add another Employee!!!"
             ],
@@ -201,15 +200,14 @@ function createEngineer() {
             case "Add a Manager":
                 createManager();
                 break;
-            case "Add a Engineer":
+            case "Add another Engineer":
                 createEngineer();
                 break;
             case "Add an Intern":
                 createIntern();
                 break;
             default:
-                // writeToFile(teamMembers);
-                fileWriter(outputPath, render(teamMembers));
+                writeToFile(teamMembers);
                 break;
         }
         const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGitHub);
@@ -219,7 +217,7 @@ function createEngineer() {
             fs.writeFile(outputPath, render(teamMembers), (err) => err ? console.log(err) : console.log('no errors found'));
         }
         writeToFile(teamMembers);
-        
+
     }).catch((error) => console.log(error));
 };
 
@@ -298,7 +296,7 @@ function createIntern() {
             choices: [
                 "Add a Manger",
                 "Add an Engineer",
-                "Add an Intern",
+                "Add another Intern",
                 "Chill I don't want to add another Employee!!!"
             ],
             default: "Chill I don't want to add another Employee!!!",
@@ -311,23 +309,18 @@ function createIntern() {
             case "Add an Engineer":
                 createEngineer();
                 break;
-            case "Add an Intern":
+            case "Add another Intern":
                 createIntern();
                 break;
             default:
                 writeToFile(teamMembers);
-                // fileWriter(outputPath, render(teamMembers));
                 break;
         }
         const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-        // console.log(manager);
         teamMembers.push(intern); // this pushes the obj -> array (teamMembers)
-        // console.log(teamMembers);
-        // console.log(render(teamMembers));
         function writeToFile(teamMembers) {
             fs.writeFile(outputPath, render(teamMembers), (err) => err ? console.log(err) : console.log('no errors found'));
         }
         writeToFile(teamMembers);
-        // fileWriter(outputPath, render(teamMembers));
     }).catch((error) => console.log(error));
 };
