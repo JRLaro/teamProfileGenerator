@@ -28,6 +28,8 @@ The application will be invoked by using the following command:
   
   
 ## *Usage* 
+ > https://github.com/JRLaro/teamProfileGenerator/tree/main/assets
+ 
 ![](assets/screenShot.png)
   
 ## *How to Use*
