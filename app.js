@@ -113,8 +113,6 @@ function init() {
             }
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
             teamMembers.push(manager); // this pushes the obj -> array (teamMembers)
-            // console.log(render(teamMembers));
-            // fileWriter(outputPath, render(teamMembers));
             function writeToFile(teamMembers) {
                 fs.writeFile(outputPath, render(teamMembers), (err) => err ? console.log(err) : console.log('no errors found'));
             }
@@ -215,14 +213,13 @@ function createEngineer() {
                 break;
         }
         const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGitHub);
-        // console.log(manager);
         teamMembers.push(engineer); // this pushes the obj -> array (teamMembers)
 
         function writeToFile(teamMembers) {
             fs.writeFile(outputPath, render(teamMembers), (err) => err ? console.log(err) : console.log('no errors found'));
         }
         writeToFile(teamMembers);
-        // fileWriter(outputPath, render(teamMembers));
+        
     }).catch((error) => console.log(error));
 };
 
